@@ -1,0 +1,29 @@
+---
+title: "QPAD estimates version 3"
+author: "Peter Solymos"
+date: "May 12, 2015"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+---
+
+# Intro
+
+# Methods
+
+Follow
+
+Solymos et al. (2013, _Methods in Ecology and Evolution_, **4**, 1047-1058).
+
+## Changes
+
+* use of NALC -- NAm coverage
+
+Maybe include pdf? v2 and v3
+
+# Usage
+
+describe how to source things
+
+
