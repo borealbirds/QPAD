@@ -12240,24 +12240,11 @@ list2env(structure(list(version = "3", sra_estimates = structure(list(
         -0.175832891903868, 1.88226988876364), .Dim = c(2L, 2L
         )), nobs = 60L, loglik = -266.147526533558, p = 2L, names = c("INTERCEPT", 
         "TREE")), .Names = c("coefficients", "vcov", "nobs", 
-    "loglik", "p", "names")), `2` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `3` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `4` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `5` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition")))), .Names = c("0", "1", "2", "3", 
-    "4", "5")), BLPW = structure(list(`0` = structure(list(coefficients = structure(-0.824305667639191, .Names = "log.tau_(Intercept)"), 
+    "loglik", "p", "names")), `2` = structure("Error", class = "try-error"), 
+        `3` = structure("Error", class = "try-error"), `4` = structure("Error", class = "try-error"), 
+        `5` = structure("Error", class = "try-error")), .Names = c("0", 
+    "1", "2", "3", "4", "5")), BLPW = structure(list(`0` = structure(list(
+        coefficients = structure(-0.824305667639191, .Names = "log.tau_(Intercept)"), 
         vcov = structure(0.00331875805967506, .Dim = c(1L, 1L
         )), nobs = 101L, loglik = -77.2445844179266, p = 1L, 
         names = "INTERCEPT"), .Names = c("coefficients", "vcov", 
@@ -14303,24 +14290,11 @@ list2env(structure(list(version = "3", sra_estimates = structure(list(
         -0.277313607385811, 4.07144553791774), .Dim = c(2L, 2L
         )), nobs = 59L, loglik = -51.9905165400081, p = 2L, names = c("INTERCEPT", 
         "TREE")), .Names = c("coefficients", "vcov", "nobs", 
-    "loglik", "p", "names")), `2` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `3` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `4` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `5` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition")))), .Names = c("0", "1", "2", "3", 
-    "4", "5")), FOSP = structure(list(`0` = structure(list(coefficients = structure(0.127131203114253, .Names = "log.tau_(Intercept)"), 
+    "loglik", "p", "names")), `2` = structure("Error", class = "try-error"), 
+        `3` = structure("Error", class = "try-error"), `4` = structure("Error", class = "try-error"), 
+        `5` = structure("Error", class = "try-error")), .Names = c("0", 
+    "1", "2", "3", "4", "5")), FOSP = structure(list(`0` = structure(list(
+        coefficients = structure(0.127131203114253, .Names = "log.tau_(Intercept)"), 
         vcov = structure(0.00155764653864409, .Dim = c(1L, 1L
         )), nobs = 255L, loglik = -307.918448267046, p = 1L, 
         names = "INTERCEPT"), .Names = c("coefficients", "vcov", 
@@ -14599,24 +14573,11 @@ list2env(structure(list(version = "3", sra_estimates = structure(list(
     -0.0121037657968937, 0.0911697187414374), .Dim = c(2L, 2L
     )), nobs = 118L, loglik = -140.680477681548, p = 2L, names = c("INTERCEPT", 
     "TREE")), .Names = c("coefficients", "vcov", "nobs", "loglik", 
-    "p", "names")), `2` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `3` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `4` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `5` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition")))), .Names = c("0", "1", "2", "3", 
-    "4", "5")), GCTH = structure(list(`0` = structure(list(coefficients = structure(-0.192210645610056, .Names = "log.tau_(Intercept)"), 
+    "p", "names")), `2` = structure("Error", class = "try-error"), 
+        `3` = structure("Error", class = "try-error"), `4` = structure("Error", class = "try-error"), 
+        `5` = structure("Error", class = "try-error")), .Names = c("0", 
+    "1", "2", "3", "4", "5")), GCTH = structure(list(`0` = structure(list(
+        coefficients = structure(-0.192210645610056, .Names = "log.tau_(Intercept)"), 
         vcov = structure(0.00683706658269687, .Dim = c(1L, 1L
         )), nobs = 64L, loglik = -82.2014196848501, p = 1L, names = "INTERCEPT"), .Names = c("coefficients", 
     "vcov", "nobs", "loglik", "p", "names")), `1` = structure(list(
@@ -15216,24 +15177,11 @@ list2env(structure(list(version = "3", sra_estimates = structure(list(
         -0.0293212047306264, 0.208326197601593), .Dim = c(2L, 
         2L)), nobs = 39L, loglik = -86.6964828355008, p = 2L, 
         names = c("INTERCEPT", "TREE")), .Names = c("coefficients", 
-    "vcov", "nobs", "loglik", "p", "names")), `2` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `3` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `4` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `5` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition")))), .Names = c("0", "1", "2", "3", 
-    "4", "5")), LALO = structure(list(`0` = structure(list(coefficients = structure(-0.452833047835225, .Names = "log.tau_(Intercept)"), 
+    "vcov", "nobs", "loglik", "p", "names")), `2` = structure("Error", class = "try-error"), 
+        `3` = structure("Error", class = "try-error"), `4` = structure("Error", class = "try-error"), 
+        `5` = structure("Error", class = "try-error")), .Names = c("0", 
+    "1", "2", "3", "4", "5")), LALO = structure(list(`0` = structure(list(
+        coefficients = structure(-0.452833047835225, .Names = "log.tau_(Intercept)"), 
         vcov = structure(0.000872464021169113, .Dim = c(1L, 1L
         )), nobs = 246L, loglik = -364.010996316738, p = 1L, 
         names = "INTERCEPT"), .Names = c("coefficients", "vcov", 
@@ -15243,31 +15191,27 @@ list2env(structure(list(version = "3", sra_estimates = structure(list(
     -0.0269064723637421, 0.463077739609363), .Dim = c(2L, 2L)), 
         nobs = 246L, loglik = -361.970047483387, p = 2L, names = c("INTERCEPT", 
         "TREE")), .Names = c("coefficients", "vcov", "nobs", 
-    "loglik", "p", "names")), `2` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `3` = structure(list(coefficients = structure(c(-0.45501596013378, 
-    0.402401859514735), .Names = c("log.tau_(Intercept)", "log.tau_WNALCWet"
-    )), vcov = structure(c(0.000875612862261201, -0.000875612862261201, 
-    -0.000875612862261201, 0.251374403149599), .Dim = c(2L, 2L
-    )), nobs = 246L, loglik = -363.582969988919, p = 2L, names = c("INTERCEPT", 
-    "WNALCOpen", "WNALCDecid", "WNALCMixed", "WNALCWet")), .Names = c("coefficients", 
-    "vcov", "nobs", "loglik", "p", "names")), `4` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `5` = structure(list(coefficients = structure(c(-0.529258738398707, 
-    0.204788243466223, 1.24198659116482), .Names = c("log.tau_(Intercept)", 
-    "log.tau_WNALCWet", "log.tau_TREE")), vcov = structure(c(0.00250466645318913, 
-    0.00371834518438277, -0.0282864342226086, 0.00371834518438277, 
-    0.265034412159983, -0.0798474909257297, -0.0282864342226086, 
-    -0.0798474909257297, 0.491518148941533), .Dim = c(3L, 3L)), 
-        nobs = 246L, loglik = -361.881389685623, p = 3L, names = c("INTERCEPT", 
-        "WNALCOpen", "WNALCDecid", "WNALCMixed", "WNALCWet", 
-        "TREE")), .Names = c("coefficients", "vcov", "nobs", 
-    "loglik", "p", "names"))), .Names = c("0", "1", "2", "3", 
-    "4", "5")), LEFL = structure(list(`0` = structure(list(coefficients = structure(-0.863436502417422, .Names = "log.tau_(Intercept)"), 
+    "loglik", "p", "names")), `2` = structure("Error", class = "try-error"), 
+        `3` = structure(list(coefficients = structure(c(-0.45501596013378, 
+        0.402401859514735), .Names = c("log.tau_(Intercept)", 
+        "log.tau_WNALCWet")), vcov = structure(c(0.000875612862261201, 
+        -0.000875612862261201, -0.000875612862261201, 0.251374403149599
+        ), .Dim = c(2L, 2L)), nobs = 246L, loglik = -363.582969988919, 
+            p = 2L, names = c("INTERCEPT", "WNALCOpen", "WNALCDecid", 
+            "WNALCMixed", "WNALCWet")), .Names = c("coefficients", 
+        "vcov", "nobs", "loglik", "p", "names")), `4` = structure("Error", class = "try-error"), 
+        `5` = structure(list(coefficients = structure(c(-0.529258738398707, 
+        0.204788243466223, 1.24198659116482), .Names = c("log.tau_(Intercept)", 
+        "log.tau_WNALCWet", "log.tau_TREE")), vcov = structure(c(0.00250466645318913, 
+        0.00371834518438277, -0.0282864342226086, 0.00371834518438277, 
+        0.265034412159983, -0.0798474909257297, -0.0282864342226086, 
+        -0.0798474909257297, 0.491518148941533), .Dim = c(3L, 
+        3L)), nobs = 246L, loglik = -361.881389685623, p = 3L, 
+            names = c("INTERCEPT", "WNALCOpen", "WNALCDecid", 
+            "WNALCMixed", "WNALCWet", "TREE")), .Names = c("coefficients", 
+        "vcov", "nobs", "loglik", "p", "names"))), .Names = c("0", 
+    "1", "2", "3", "4", "5")), LEFL = structure(list(`0` = structure(list(
+        coefficients = structure(-0.863436502417422, .Names = "log.tau_(Intercept)"), 
         vcov = structure(0.00132842415758638, .Dim = c(1L, 1L
         )), nobs = 201L, loglik = -182.048646817885, p = 1L, 
         names = "INTERCEPT"), .Names = c("coefficients", "vcov", 
@@ -18794,31 +18738,27 @@ list2env(structure(list(version = "3", sra_estimates = structure(list(
         -0.143527524121339, 1.57966480871979), .Dim = c(2L, 2L
         )), nobs = 46L, loglik = -55.6100739240122, p = 2L, names = c("INTERCEPT", 
         "TREE")), .Names = c("coefficients", "vcov", "nobs", 
-    "loglik", "p", "names")), `2` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `3` = structure(list(coefficients = structure(c(-0.430612700689248, 
-    0.1764769485231), .Names = c("log.tau_(Intercept)", "log.tau_WNALCWet"
-    )), vcov = structure(c(0.00697459881560322, -0.00697459881716015, 
-    -0.00697459881716015, 0.132641564557454), .Dim = c(2L, 2L
-    )), nobs = 46L, loglik = -56.0453199969478, p = 2L, names = c("INTERCEPT", 
-    "WNALCOpen", "WNALCDecid", "WNALCMixed", "WNALCWet")), .Names = c("coefficients", 
-    "vcov", "nobs", "loglik", "p", "names")), `4` = structure("Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : \n  contrasts can be applied only to factors with 2 or more levels\n", class = "try-error", condition = structure(list(
-        message = "contrasts can be applied only to factors with 2 or more levels", 
-        call = `contrasts<-`(`*tmp*`, value = contr.funs[1 + 
-            isOF[nn]])), .Names = c("message", "call"), class = c("simpleError", 
-    "error", "condition"))), `5` = structure(list(coefficients = structure(c(-0.228884975872824, 
-    0.527640424857374, -2.63304901478331), .Names = c("log.tau_(Intercept)", 
-    "log.tau_WNALCWet", "log.tau_TREE")), vcov = structure(c(0.0246537875437725, 
-    0.0212434105280701, -0.218558220600006, 0.0212434105280701, 
-    0.178397549532813, -0.352315434062239, -0.218558220600005, 
-    -0.352315434062239, 2.71844764804818), .Dim = c(3L, 3L)), 
-        nobs = 46L, loglik = -54.6793933995589, p = 3L, names = c("INTERCEPT", 
+    "loglik", "p", "names")), `2` = structure("Error", class = "try-error"), 
+        `3` = structure(list(coefficients = structure(c(-0.430612700689248, 
+        0.1764769485231), .Names = c("log.tau_(Intercept)", "log.tau_WNALCWet"
+        )), vcov = structure(c(0.00697459881560322, -0.00697459881716015, 
+        -0.00697459881716015, 0.132641564557454), .Dim = c(2L, 
+        2L)), nobs = 46L, loglik = -56.0453199969478, p = 2L, 
+            names = c("INTERCEPT", "WNALCOpen", "WNALCDecid", 
+            "WNALCMixed", "WNALCWet")), .Names = c("coefficients", 
+        "vcov", "nobs", "loglik", "p", "names")), `4` = structure("Error", class = "try-error"), 
+        `5` = structure(list(coefficients = structure(c(-0.228884975872824, 
+        0.527640424857374, -2.63304901478331), .Names = c("log.tau_(Intercept)", 
+        "log.tau_WNALCWet", "log.tau_TREE")), vcov = structure(c(0.0246537875437725, 
+        0.0212434105280701, -0.218558220600006, 0.0212434105280701, 
+        0.178397549532813, -0.352315434062239, -0.218558220600005, 
+        -0.352315434062239, 2.71844764804818), .Dim = c(3L, 3L
+        )), nobs = 46L, loglik = -54.6793933995589, p = 3L, names = c("INTERCEPT", 
         "WNALCOpen", "WNALCDecid", "WNALCMixed", "WNALCWet", 
         "TREE")), .Names = c("coefficients", "vcov", "nobs", 
-    "loglik", "p", "names"))), .Names = c("0", "1", "2", "3", 
-    "4", "5")), WETA = structure(list(`0` = structure(list(coefficients = structure(-0.193435207512987, .Names = "log.tau_(Intercept)"), 
+        "loglik", "p", "names"))), .Names = c("0", "1", "2", 
+    "3", "4", "5")), WETA = structure(list(`0` = structure(list(
+        coefficients = structure(-0.193435207512987, .Names = "log.tau_(Intercept)"), 
         vcov = structure(0.00123364572632198, .Dim = c(1L, 1L
         )), nobs = 251L, loglik = -311.871591045949, p = 1L, 
         names = "INTERCEPT"), .Names = c("coefficients", "vcov", 
