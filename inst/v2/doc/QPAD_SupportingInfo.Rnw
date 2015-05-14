@@ -405,10 +405,10 @@ pf <- oven$pforest
 pd <- oven$pdecid
 pc <- pf - pd
 oven$LCC <- factor(5, levels=1:5)     # 5=OH open habitat
-oven$LCC[pf > 0.25 & pc > pd]  <- "3" # 3=SC dense conifer
+oven$LCC[pf > 0.25 & pc > pd]  <- "3" # 3=SC sparse conifer
 oven$LCC[pf > 0.25 & pc <= pd] <- "4" # 4=SD sparse deciduous
 oven$LCC[pf > 0.6 & pc > pd]   <- "1" # 1=DC dense conifer
-oven$LCC[pf > 0.6 & pc <= pd]  <- "2" # 2=DC dense deciduous
+oven$LCC[pf > 0.6 & pc <= pd]  <- "2" # 2=DD dense deciduous
 table(oven$LCC)
 @
 
