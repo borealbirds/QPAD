@@ -1,11 +1,28 @@
 # QPAD: Calibrating indices of avian density from non-standardized survey data
 
-The `QPAD` package contains **estimates** of singing rates and effective
-detection distances for North American boreal breeding bird species,
-following the methodology 
-described in Solymos et al. (2013). **Estimating procedures** described 
-in Solymos et al. (2013) can be found in the
-[`detect`](http://cran.r-project.org/package=detect) R package.
+The analysis of large heterogeneous data sets of avian point-count surveys 
+compiled across studies is hindered
+by a lack of analytical approaches that can deal with detectability 
+and variation in survey protocols.
+
+We reformulated removal models of avian singing rates and distance 
+sampling models of the effective detection
+radius (EDR) to control for the effects of survey protocol and 
+temporal and environmental covariates on
+detection probabilities. 
+
+* These **estimating procedures** as described 
+  in Solymos et al. (2013) are implemented in the
+  `[detect](http://cran.r-project.org/package=detect)` R package.
+
+* The **estimates** of singing rates and effective
+  detection distances for North American boreal forest songbird species
+  is provided as part of the `QPAD` package.
+
+Using offsets derived from these estimates can significantly reduce the 
+computational burden when fitting complex models to large data sets and 
+can be used with a wide range of statistical techniques for 
+inference and prediction of avian densities.
 
 ## Install
 
@@ -15,7 +32,7 @@ library(devtools)
 install_github("psolymos/QPAD")
 ```
 
-## Usage
+## Use
 
 !!! FIXME !!!
 
@@ -24,7 +41,7 @@ install_github("psolymos/QPAD")
 Use the [issue tracker](https://github.com/psolymos/QPAD/issues)
 to report a problem.
 
-## References
+## Cite
 
 Solymos et al. 2013. 
 Calibrating indices of avian density from non-standardized survey data: 
