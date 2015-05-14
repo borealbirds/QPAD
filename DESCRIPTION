@@ -1,0 +1,12 @@
+Package: QPAD
+Type: Package
+Title: QPAD estimates
+Version: 0.0-1
+Date: 2015-05-14
+Author: Peter Solymos
+Maintainer: Peter Solymos <solymos@ualberta.ca>
+Description: QPAD.
+URL: https://github.com/psolymos/QPAD
+License: GPL-2
+LazyLoad: yes
+LazyData: true
