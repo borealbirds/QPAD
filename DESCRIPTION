@@ -5,6 +5,7 @@ Version: 0.0-1
 Date: 2015-05-14
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
+Suggests: MASS
 Description: QPAD.
 URL: https://github.com/psolymos/QPAD
 License: GPL-2

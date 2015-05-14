@@ -3,8 +3,6 @@ export(bestmodelBAMspecies,
     checkBAMspecies,         
     checkBAMspeciesmodel,   
     coefBAMspecies,          
-    corrections,            
-    corrections2offset,      
     customBAMcorrections,   
     edr_fun,                 
     getBAMmodellist,        
@@ -20,5 +18,11 @@ export(bestmodelBAMspecies,
     summaryBAMspecies,       
     unload_BAM_QPAD,        
     vcovBAMspecies)
-exportClasses(summaryBAMspecies)
-exportMethods(print)
+exportClasses(summaryBAMspecies,
+    customBAMcorrections,
+    globalBAMcorrections,
+    localBAMcorrections,
+    BAMcorrections)
+exportMethods(print,
+    corrections2offset,
+    corrections)

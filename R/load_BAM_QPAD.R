@@ -1,6 +1,10 @@
 unload_BAM_QPAD <- function() {
-    if (exists(".BAMCOEFS", envir=.GlobalEnv))
+    if (!exists(".BAMCOEFS", envir=.GlobalEnv)) {
+        cat("There was nothing to unload.\n",
+            "Use 'load_BAM_QPAD()' to load estimates")
+    } else {
         rm(list=".BAMCOEFS", envir=.GlobalEnv)
+    }
     invisible(NULL)
 }
 

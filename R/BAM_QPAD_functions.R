@@ -6,35 +6,41 @@
 
 ## get version
 getBAMversion <- function() {
+    checkBAMestimates()
     get("version", envir=.BAMCOEFS)
 }
 
 ## get species list
 getBAMspecieslist <- function() {
+    checkBAMestimates()
     get("spp", envir=.BAMCOEFS)
 }
 #getBAMspecieslist()
 
 ## get model list
 getBAMmodellist <- function() {
+    checkBAMestimates()
     list(sra=get("sra_list", envir=.BAMCOEFS),
         edr=get("edr_list", envir=.BAMCOEFS))
 }
 #getBAMmodellist()
 
 getBAMspeciestable <- function() {
+    checkBAMestimates()
     get("spp_table", envir=.BAMCOEFS)
 }
 #getBAMspeciestable()
 
 ## check if coefs are available for a species
 checkBAMspecies <- function(species) {
+    checkBAMestimates()
     species %in% getBAMspecieslist()
 }
 #checkBAMspecies("OVEN")
 
 ## get coefs for a species
 getBAMspecies <- function(species) {
+    checkBAMestimates()
     if (!checkBAMspecies(species))
         stop("Estimates for species ", species, " not found")
     list(edr=as.list(.BAMCOEFS)$edr_estimates[[species]],
@@ -45,6 +51,7 @@ getBAMspecies <- function(species) {
 
 ## check if model combination can be found
 checkBAMspeciesmodel <- function(species, model.sra=0, model.edr=0) {
+    checkBAMestimates()
     model.sra <- match.arg(as.character(model.sra), names(get("sra_df", envir=.BAMCOEFS)))
     model.edr <- match.arg(as.character(model.edr), names(get("edr_df", envir=.BAMCOEFS)))
     mp <- as.logical(get("sra_models", envir=.BAMCOEFS)[species, model.sra])
@@ -58,6 +65,7 @@ checkBAMspeciesmodel <- function(species, model.sra=0, model.edr=0) {
 
 ## get coef for p/q model
 coefBAMspecies <- function(species, model.sra=0, model.edr=0) {
+    checkBAMestimates()
     tmp <- checkBAMspeciesmodel(species, model.sra, model.edr)
     model.sra <- tmp$model.sra
     model.edr <- tmp$model.edr
@@ -76,6 +84,7 @@ coefBAMspecies <- function(species, model.sra=0, model.edr=0) {
 #coefBAMspecies("OVEN", 8, 1)
 
 vcovBAMspecies <- function(species, model.sra=0, model.edr=0) {
+    checkBAMestimates()
     tmp <- checkBAMspeciesmodel(species, model.sra, model.edr)
     model.sra <- tmp$model.sra
     model.edr <- tmp$model.edr
@@ -96,6 +105,7 @@ vcovBAMspecies <- function(species, model.sra=0, model.edr=0) {
 ## get summary for p/q model
 summaryBAMspecies <- 
 function(species, model.sra, model.edr) {
+    checkBAMestimates()
     if (missing(model.sra))
         model.sra <- bestmodelBAMspecies(species)$sra
     if (missing(model.edr))
@@ -134,6 +144,7 @@ print.summaryBAMspecies <- function(x, ...) {
 ## AIC/BIC based model selection
 selectmodelBAMspecies <-
 function(species, model.sra, model.edr) {
+    checkBAMestimates()
     l1 <- get("sra_loglik", envir=.BAMCOEFS)[species,]
     l2 <- get("edr_loglik", envir=.BAMCOEFS)[species,]
     sra <- data.frame(model=names(l1),
@@ -172,6 +183,7 @@ function(species, model.sra, model.edr) {
 ## multi: best model randomly chosen based on model weights
 bestmodelBAMspecies <- 
 function(species, model.sra, model.edr, type=c("AIC", "BIC", "multi")) {
+    checkBAMestimates()
     type <- match.arg(type)
     x <- selectmodelBAMspecies(species, model.sra, model.edr)
     if (type=="multi") {
@@ -222,8 +234,8 @@ function(r, t, phi, tau)
 globalBAMcorrections <- 
 function(species, r, t, labels, boot=FALSE, ...)
 {
-    SPP <- coefBAMspecies(species, 0, 0)
-    VCV <- vcovBAMspecies(species, 0, 0)
+    #SPP <- coefBAMspecies(species, 0, 0)
+    #VCV <- vcovBAMspecies(species, 0, 0)
     qfun <- edr_fun
     pfun <- sra_fun
 #    qfun <- function(rr, sigma) {
@@ -237,9 +249,11 @@ function(species, r, t, labels, boot=FALSE, ...)
     if (is.null(phi0)) {
         model.sra <- 0
         if (boot) {
-            phi <- exp(rnorm(1, SPP$sra, sqrt(VCV$sra[1,1])))
+            phi <- exp(rnorm(1, 
+                coefBAMspecies(species, 0, 0)$sra, 
+                sqrt(vcovBAMspecies(species, 0, 0)$sra[1,1])))
         } else {
-            phi <- exp(SPP$sra)
+            phi <- exp(coefBAMspecies(species, 0, 0)$sra)
         }
     } else {
         model.sra <- NA
@@ -249,9 +263,11 @@ function(species, r, t, labels, boot=FALSE, ...)
     if (is.null(sigma0)) {
         model.edr <- 0
         if (boot) {
-            sigma <- exp(rnorm(1, SPP$edr, sqrt(VCV$edr[1,1])))
+            sigma <- exp(rnorm(1, 
+                coefBAMspecies(species, 0, 0)$edr, 
+                sqrt(vcovBAMspecies(species, 0, 0)$edr[1,1])))
         } else {
-            sigma <- exp(SPP$edr)
+            sigma <- exp(coefBAMspecies(species, 0, 0)$edr)
         }
     } else {
         model.edr <- NA
@@ -284,7 +300,8 @@ function(species, r, t, labels, boot=FALSE, ...)
 #globalBAMcorrections("OVEN", r, t, labels=LETTERS[1:11], phi=1)
 
 ## creates offset
-corrections2offset <- function(x, link="log", na.rm=FALSE) {
+corrections2offset <- function (x, ...) UseMethod("corrections2offset")
+corrections2offset.BAMcorrections <- function(x, link="log", na.rm=FALSE) {
     link <- match.arg(link, c("log"))
     linkfun <- switch(link,
         "log"=log)
@@ -301,7 +318,8 @@ corrections2offset <- function(x, link="log", na.rm=FALSE) {
 #corrections2offset(globalBAMcorrections("OVEN", r, t, labels=LETTERS[1:11]), na.rm=TRUE)
 
 ## correction factor for density
-corrections <- function(x, na.rm=FALSE) {
+corrections <- function (x, ...) UseMethod("corrections")
+corrections.BAMcorrections <- function(x, na.rm=FALSE) {
     out <- apply(x, 1, prod, na.rm=na.rm)
     attr(out, "species") <- attr(x, "species")
     attr(out, "model.sra") <- attr(x, "model.sra")
@@ -337,9 +355,9 @@ jday, tssr, tree, lcc, road,
 model.sra=0, model.edr=0, labels, ver=1, boot=FALSE, ...)
 {
     if (boot)
-        require(MASS)
-    SPP <- coefBAMspecies(species, model.sra, model.edr)
-    VCV <- vcovBAMspecies(species, model.sra, model.edr)
+        requireNamespace("MASS")
+    #SPP <- coefBAMspecies(species, model.sra, model.edr)
+    #VCV <- vcovBAMspecies(species, model.sra, model.edr)
     model.sra <- as.character(model.sra)
     model.edr <- as.character(model.edr)
     qfun <- edr_fun
@@ -372,10 +390,12 @@ model.sra=0, model.edr=0, labels, ver=1, boot=FALSE, ...)
             "15"=model.matrix(~jday + tssr + I(tssr^2)),
             "8"=model.matrix(~jday + I(jday^2) + tssr + I(tssr^2)))
         if (boot) {
-            tmp <- mvrnorm(1, SPP$sra, VCV$sra)
+            tmp <- MASS::mvrnorm(1, 
+                coefBAMspecies(species, model.sra, model.edr)$sra, 
+                vcovBAMspecies(species, model.sra, model.edr)$sra)
             phi <- exp(drop(Xt %*% tmp))
         } else {
-            phi <- exp(drop(Xt %*% SPP$sra))
+            phi <- exp(drop(Xt %*% coefBAMspecies(species, model.sra, model.edr)$sra))
         }
         if (missing(jday) && missing(tssr))
             t.nona <- !is.na(t)
@@ -418,10 +438,12 @@ model.sra=0, model.edr=0, labels, ver=1, boot=FALSE, ...)
                 "2"=model.matrix(~lcc))
         }
         if (boot) {
-            tmp <- mvrnorm(1, SPP$edr, VCV$edr)
+            tmp <- MASS::mvrnorm(1, 
+                coefBAMspecies(species, model.sra, model.edr)$edr, 
+                vcovBAMspecies(species, model.sra, model.edr)$edr)
             sigma <- exp(drop(Xr %*% tmp))
         } else {
-            sigma <- exp(drop(Xr %*% SPP$edr))
+            sigma <- exp(drop(Xr %*% coefBAMspecies(species, model.sra, model.edr)$edr))
         }
         if (missing(tree) && missing(road))
             r.nona <- !is.na(r)
