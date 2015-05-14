@@ -13,7 +13,7 @@ detection probabilities.
 
 * These **estimating procedures** as described 
   in Solymos et al. (2013) are implemented in the
-  `[detect](http://cran.r-project.org/package=detect)` R package.
+  [`detect`](http://cran.r-project.org/package=detect) R package.
 
 * The **estimates** of singing rates and effective
   detection distances for North American boreal forest songbird species
