@@ -21791,4 +21791,4 @@ Inf, 874.510039601285, 368.716156537731, 252.452463718566, 3991.78931025588,
 "sra_aic", "edr_aic", "sra_loglik", "edr_loglik", "sra_df", "edr_df", 
 "sra_n", "edr_n", "sra_models", "edr_models", "sra_list", "edr_list", 
 "spp_table", "spp")), envir=.BAMCOEFS)
-cat("BAM QPAD parameter estimates loaded, version 20150512\n")
+#cat("BAM QPAD parameter estimates loaded, version 20150512\n")
