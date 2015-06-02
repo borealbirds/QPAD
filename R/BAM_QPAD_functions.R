@@ -205,7 +205,7 @@ function(species, model.sra, model.edr, type=c("AIC", "BIC", "multi")) {
 #bestmodelBAMspecies("OVEN")
 
 edr_fun <- function(r, tau) {
-    sigma^2*(1-exp(-r^2/tau^2))/r^2
+    tau^2*(1-exp(-r^2/tau^2))/r^2
 }
 sra_fun <- function(t, phi) {
     1-exp(-t*phi)
