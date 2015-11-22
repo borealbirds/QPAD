@@ -1,3 +1,4 @@
+inst/doc
 \.md
 .git*
 .DS_Store
