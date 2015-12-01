@@ -1,0 +1,118 @@
+---
+title: "Introduction to the analysis of messy data"
+subtitle: "Short Course proposal for the NAOC 2016"
+author: "Peter Solymos"
+date: "November 30, 2015"
+output:
+  pdf_document:
+    keep_tex: no
+    number_sections: yes
+    toc: no
+---
+
+# Type of event (training, short course, or workshop)
+
+The type of the event is **Short Course**.
+
+# Title of event
+
+The title of the event is *Introduction to the analysis of messy data*.
+
+# Desired times and dates (up to 3 options)
+
+The proposed event is a full day course (8 hours long with 3 breaks),
+Monday, August 15 preferred (Tuesday, August 16 less preferred).
+
+# Name and affiliation of instructor(s)
+
+**Dr. Peter Solymos** \
+Alberta Biodiversity Monitoring Institute and the Boreal Avian Modelling Project \
+Department of Biological Sciences, CW 405, Biological Sciences Building \
+University of Alberta, Edmonton, Alberta, T6G 2E9, Canada \
+Phone: (00-1) 780-492-8534 \
+Fax: (00-1) 780-492-7635 \
+E-mail: solymos@ualberta.ca \
+Web: http://peter.solymos.org
+
+
+# Number of participants (min, max) and target audience
+
+Number of participants: minimum 10, maximum 30.
+
+# Proposed cost to participants (if applicable)
+
+The instructor is not charging fees for teaching the course.
+
+# Summary of course objectives
+
+This course is aimed towards ornithologists analyzing field observations,
+who are often faced by data heterogeneities due to
+field sampling protocols changing from one project to another,
+or through time over the lifespan of projects.
+Such heterogeneities can bias analyses when data sets are integrated
+inadequately (Matsuoka et al. 2012, *Auk* 129:268--282; Solymos et al. 2013, *Methods in Ecology and Evolution* 4:1047--1058), or can lead to information loss when filtered and standardized to common standards (Matsuoka et al. 2014, *Condor* 116:599--608).
+Accounting for these issues is still important for
+estimating status and trend for bird species and communities, thus 
+better informing large scale conservation and management
+(Barker et al. 2015, *Wildlife Society Bulletin* 39:480--487).
+
+Analysts of big and messy data sets need to feel comfortable
+with manipulating the data, need a full understanding the mechanics of the models being used (i.e. critically interpreting the results and acknowledging assumptions and limitations), and should be able to make informed choices when faced with methodological challenges (Solymos et al. 2012, *Environmetrics* 23:197--205; Solymos & Lele in *press*, *Methods in Ecology and Evolution*).
+
+The course emphasizes critical thinking and active learning. Participants will be asked to take part in the analysis: first hand analytics experience from start to finish. We will use publicly available data sets to demonstrate the manipulation and analysis of large scale and often messy data sets. We will use examples and case studies from the peer-reviewed literature, including the references cited in this proposal. We will teach the use of the following freely available and open-source R packages: 
+
+* `mefa4` for manipulating large data, 
+* `ResourceSelection` package for presence-only data.
+* `detect` for time-removal sampling, distance sampling, single visit based N-mixture and occupancy models,
+* `unmarked` for multiple-visit based occupancy and abundance models.
+
+The expected outcome of the course is a solid foundation for further professional development via increased confidence in applying these methods for field observations.
+
+
+# Overview of topics or syllabus
+
+1. Database relations for field observations (human and recorder based):
+* naming conventions and attributes (survey, session, site, project, visit)
+* geospatial summaries and standard database operations (filtering, sorting, mapping/joins)
+2. Estimating nuisance variables:
+* Distance sampling:
+    - effective detection radius and effective sampling area
+    - constant and covariate models
+    - integrating conventional point counts and recordings (ARU based data)
+* Time-removal sampling:
+    - constant, time varying, finite mixture models
+    - nonlinear responses
+    - ARU specific consideration, monitoring changes in behavior
+3. Estimating occupancy, abundance, and density:
+* Analyzing presence-only data
+    - Resource selection (probability) functions
+    - relationships with occupancy and count models
+* Multiple- and single-visit based occupancy models and their assumptions
+* Multiple- and single-visit based abundance models and their assumptions
+    - Standard and generalized multiple-visit N-mixtures
+    - Single-visit N-mixture
+    - Generalized distance sampling through integrated likelihood
+    - Advantages of conditional maximum likelihood estimation
+    - Model selection considerations with mixture models
+4. Large scale analysis of integrated data sets:
+* Detectability offsets (QPAD approach)
+* Propagating uncertainty
+* Issues with roadside surveys
+* Computational aspects (high performance computing resources)
+
+
+# Prior experience teaching proposed topic
+
+Dr. Solymos is a statistical ecologist and author of several R packages (dclone, detect, ResourceSelection, mefa4, vegan) with extensive teaching experience in classroom settings and consulting experience including NGOs, governments, academic and industry sectors.
+
+* 1-day workshop 8/2015: *Hierarchical models for conservation biologists made easy*, ICCB/ECCB congress, Montpellier, France (with Dr. Subhash Lele)
+* Bi-weekly webinars (4-6 events / year) in 2014 and 2015 for research collaborators: *Manipulating and analyzing continental scale data sets*.
+
+# Room set up, location and other requirements
+
+* For the course we require a classroom, 
+  power for participants' laptops, 
+  flip chart OR whiteboard OR overhead projector, internet access.
+* Participants should bring their own laptops.
+* The instructor will provide open source and free software, 
+  and electronic course material online and on DVD/USB sticks.
