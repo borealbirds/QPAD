@@ -1,0 +1,115 @@
+---
+title: "Custom model example"
+author: "Peter Solymos"
+date: "January 12, 2016"
+output:
+  pdf_document:
+    keep_tex: no
+    number_sections: yes
+    toc: no
+---
+
+## Motivation
+
+Accounting for model-selection uncertainty when using custom
+singing rate and EDR estimates.
+
+I show the singing rate part here, but EDR calculations are similar.
+In the end, one has to combine the results to get offsets
+as $log(A_{i} \hat{p_{i}} \hat{q_{i}})$ or $log(\hat{A_{i}} \hat{p_{i}})$.
+
+## Simulating the data
+
+I follow here the `cmulti` help page using a removal model
+with non-constant singing rate:
+
+```{r}
+library(detect)
+simfun1 <- function(n = 10, phi = 0.1, c=1, tau=0.8, type="rem") {
+    if (type=="dis") {
+        Dparts <- matrix(c(0.5, 1, NA,
+                      0.5, 1, Inf,
+                      1, Inf, NA), 3, 3, byrow=TRUE)
+        D <- Dparts[sample.int(3, n, replace=TRUE),]
+        CP <- 1-exp(-(D/tau)^2)
+    } else {
+        Dparts <- matrix(c(5, 10, NA,
+                      3, 5, 10,
+                      3, 5, NA), 3, 3, byrow=TRUE)
+        D <- Dparts[sample.int(3, n, replace=TRUE),]
+        CP <- 1-c*exp(-D*phi)
+    }
+    k <- ncol(D)
+    P <- CP - cbind(0, CP[, -k, drop=FALSE])
+    Psum <- rowSums(P, na.rm=TRUE)
+    PPsum <- P / Psum
+    Pok <- !is.na(PPsum)
+    N <- rpois(n, 10)
+    Y <- matrix(NA, ncol(PPsum), nrow(PPsum))
+    Ypre <- sapply(1:n, function(i) rmultinom(1, N, PPsum[i,Pok[i,]]))
+    Y[t(Pok)] <- unlist(Ypre)
+    Y <- t(Y)
+    list(Y=Y, D=D)
+}
+n <- 200
+x1 <- rnorm(n)
+X <- cbind(1, x1)
+log.phi <- X %*% c(-2,-1)
+set.seed(1234)
+vv <- simfun1(n=n, phi=exp(cbind(log.phi, log.phi, log.phi)))
+```
+
+## Models and weights
+
+Fit some models, so that we can get model weights:
+
+```{r}
+## correlated random variable
+x2 <- x1 + rnorm(n, 0, 0.5)
+x3 <- x2 + rnorm(n, 0, 0.1)
+df <- data.frame(x2=x2, x3=x3)
+m1 <- cmulti(vv$Y | vv$D ~ 1, df, type="rem")
+m2 <- cmulti(vv$Y | vv$D ~ x2, df,  type="rem")
+m3 <- cmulti(vv$Y | vv$D ~ x3, df, type="rem")
+```
+
+Calculate IC table and model weights
+
+```{r}
+aic <- AIC(m1, m2, m3)
+aic$dAIC <- aic$AIC - min(aic$AIC)
+## this function calculates weights from delta AIC
+wfun <- 
+function(dAIC) {
+    w <- exp(-dAIC/2)
+    w/sum(w)
+}
+aic$w <- wfun(aic$dAIC)
+aic
+```
+
+## Parametric bootstrap 
+
+We are incorporating weights into a parametric bootstrap framework.
+
+```{r}
+R <- 1000
+## list of models
+mods <- list(m1, m2, m3)
+## create model ID vector based on weights
+mid <- sample(1:length(mods), R, replace=TRUE, prob=aic$w)
+table(mid) / R
+round(aic$w, 3)
+
+## output matrix
+mat <- matrix(NA, n, R)
+library(MASS)
+for (i in 1:R) {
+    j <- mid[i]
+    m <- mods[[j]]
+    cf_star <- mvrnorm(1, coef(m), vcov(m))
+    MM <- model.matrix(formula(m$formula, lhs=0), m$model)
+    mat[,i] <- exp(drop(MM %*% cf_star))
+}
+```
+
