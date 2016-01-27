@@ -87,7 +87,6 @@ The expected outcome of the course is a solid foundation for further professiona
 * Analyzing presence-only data
     - Resource selection (probability) functions
     - relationships with occupancy and count models
-* Multiple- and single-visit based occupancy models and their assumptions
 * Multiple- and single-visit based abundance models and their assumptions
     - Standard and generalized multiple-visit N-mixtures
     - Single-visit N-mixture
