@@ -350,131 +350,121 @@ corrections.BAMcorrections <- function(x, na.rm=FALSE) {
 ## note: road effect is still experimental
 
 localBAMcorrections <- 
-function(species, r, t, 
-jday, tssr, tree, lcc, road,
-model.sra=0, model.edr=0, labels, ver=1, boot=FALSE, ...)
+function (species, r, t, jday, tssr, tree, lcc, road, model.sra = 0, 
+    model.edr = 0, labels, ver = 1, boot = FALSE, ...) 
 {
-    if (boot)
+    if (ver > 1)
+        stop("ver must be 1")
+    if (boot) 
         requireNamespace("MASS")
-    #SPP <- coefBAMspecies(species, model.sra, model.edr)
-    #VCV <- vcovBAMspecies(species, model.sra, model.edr)
     model.sra <- as.character(model.sra)
     model.edr <- as.character(model.edr)
     qfun <- edr_fun
     pfun <- sra_fun
-#    qfun <- function(rr, sigma) {
-#        sigma^2*(1-exp(-rr^2/sigma^2))/rr^2
-#    }
-#    pfun <- function(tt, phi) {
-#        1-exp(-tt*phi)
-#    }
     phi0 <- list(...)$phi
     sigma0 <- list(...)$tau
-    ## sra
     if (is.null(phi0)) {
         ltssr <- names(getBAMmodellist()$sra)[grep("TSSR", getBAMmodellist()$sra)]
-        ljday <- names(getBAMmodellist()$sra)[grep("jday", getBAMmodellist()$sra)]
-        if (missing(tssr) && model.sra %in% ltssr)
+        ljday <- names(getBAMmodellist()$sra)[grep("JDAY", getBAMmodellist()$sra)]
+        if (missing(tssr) && model.sra %in% ltssr) 
             stop("tssr must be specified for model.sra", model.sra)
-        if (missing(jday) && model.sra %in% ljday)
+        if (missing(jday) && model.sra %in% ljday) 
             stop("jday must be specified for model.sra", model.sra)
-        Xt <- switch(model.sra,
-            "0"=matrix(1,length(t),1),
-            "1"=model.matrix(~jday),
-            "2"=model.matrix(~tssr),
-            "3"=model.matrix(~jday + I(jday^2)),
-            "4"=model.matrix(~tssr + I(tssr^2)),
-            "5"=model.matrix(~jday + tssr),
-            "6"=model.matrix(~jday + I(jday^2) + tssr),
-            "7"=model.matrix(~jday + tssr + I(tssr^2)),
-            "15"=model.matrix(~jday + tssr + I(tssr^2)),
-            "8"=model.matrix(~jday + I(jday^2) + tssr + I(tssr^2)))
+        Xt <- switch(model.sra, 
+            `0` = matrix(1, length(t), 1), 
+            `1` = model.matrix(~jday), 
+            `2` = model.matrix(~tssr), 
+            `3` = model.matrix(~jday + I(jday^2)), 
+            `4` = model.matrix(~tssr + I(tssr^2)), 
+            `5` = model.matrix(~jday + tssr), 
+            `6` = model.matrix(~jday + I(jday^2) + tssr), 
+            `7` = model.matrix(~jday + tssr + I(tssr^2)), 
+            `8` = model.matrix(~jday + I(jday^2) + tssr + I(tssr^2)))
         if (boot) {
-            tmp <- MASS::mvrnorm(1, 
-                coefBAMspecies(species, model.sra, model.edr)$sra, 
-                vcovBAMspecies(species, model.sra, model.edr)$sra)
+            tmp <- MASS::mvrnorm(1, coefBAMspecies(species, model.sra, 
+                model.edr)$sra, vcovBAMspecies(species, model.sra, 
+                model.edr)$sra)
             phi <- exp(drop(Xt %*% tmp))
         } else {
-            phi <- exp(drop(Xt %*% coefBAMspecies(species, model.sra, model.edr)$sra))
+            phi <- exp(drop(Xt %*% coefBAMspecies(species, model.sra, 
+                model.edr)$sra))
         }
-        if (missing(jday) && missing(tssr))
-            t.nona <- !is.na(t)
-        if (missing(jday) && !missing(tssr))
-            t.nona <- !is.na(t) & !is.na(tssr)
-        if (!missing(jday) && missing(tssr))
-            t.nona <- !is.na(t) & !is.na(jday)
-        if (!missing(jday) && !missing(tssr))
-            t.nona <- !is.na(t) & !is.na(jday) & !is.na(tssr)
+#        if (missing(jday) && missing(tssr)) 
+#            t.nona <- !is.na(t)
+#        if (missing(jday) && !missing(tssr)) 
+#            t.nona <- !is.na(t) & !is.na(tssr)
+#        if (!missing(jday) && missing(tssr)) 
+#            t.nona <- !is.na(t) & !is.na(jday)
+#        if (!missing(jday) && !missing(tssr)) 
+#            t.nona <- !is.na(t) & !is.na(jday) & !is.na(tssr)
     } else {
         model.sra <- NA
         phi <- phi0
-        t.nona <- !is.na(t)
-        if (length(phi)==1)
+#        t.nona <- !is.na(t)
+        if (length(phi) == 1) 
             phi <- rep(phi, length(t))
     }
-    phi <- phi[t.nona]
+#    t.nona <- rep(TRUE, length(phi))
+#    phi <- phi[t.nona]
     names(phi) <- NULL
-    ## edr
     if (is.null(sigma0)) {
         ltree <- names(getBAMmodellist()$edr)[grep("TREE", getBAMmodellist()$edr)]
+        llcc <- names(getBAMmodellist()$edr)[grep("LCC", getBAMmodellist()$edr)]
         lroad <- names(getBAMmodellist()$edr)[grep("ROAD", getBAMmodellist()$edr)]
-        if (missing(tree) && model.edr %in% ltree)
+        if (missing(tree) && model.edr %in% ltree) 
             stop("tree must be specified for model.edr", model.edr)
-        if (missing(road) && model.edr %in% lroad)
-            stop("road must be specified for model.edr", model.edr)
-        if (ver==2) {
-            Xr <- switch(model.edr,
-                "0"=matrix(1,length(r),1),
-                "1"=model.matrix(~tree),
-                "2"=model.matrix(~lcc),
-                "3"=model.matrix(~road),
-                "4"=model.matrix(~tree + road),
-                "5"=model.matrix(~lcc + road))
-        }
-        if (ver==1) {
-            Xr <- switch(model.edr,
-                "0"=matrix(1,length(r),1),
-                "1"=model.matrix(~tree),
-                "2"=model.matrix(~lcc))
-        }
+        if (missing(lcc) && model.edr %in% llcc) 
+            stop("lcc must be specified for model.edr", model.edr)
+        Xr <- switch(model.edr, 
+            `0` = matrix(1, length(r), 1), 
+            `1` = model.matrix(~tree), 
+            `2` = model.matrix(~lcc))
         if (boot) {
-            tmp <- MASS::mvrnorm(1, 
-                coefBAMspecies(species, model.sra, model.edr)$edr, 
-                vcovBAMspecies(species, model.sra, model.edr)$edr)
+            tmp <- MASS::mvrnorm(1, coefBAMspecies(species, model.sra, 
+                model.edr)$edr, vcovBAMspecies(species, model.sra, 
+                model.edr)$edr)
             sigma <- exp(drop(Xr %*% tmp))
-        } else {
-            sigma <- exp(drop(Xr %*% coefBAMspecies(species, model.sra, model.edr)$edr))
         }
-        if (missing(tree) && missing(road))
-            r.nona <- !is.na(r)
-        if (missing(tree) && !missing(road))
-            r.nona <- !is.na(r) & !is.na(road)
-        if (!missing(tree) && missing(road))
-            r.nona <- !is.na(r) & !is.na(tree)
-        if (!missing(tree) && !missing(road))
-            r.nona <- !is.na(r) & !is.na(tree) & !is.na(road)
+        else {
+            sigma <- exp(drop(Xr %*% coefBAMspecies(species, 
+                model.sra, model.edr)$edr))
+        }
+#        if (missing(tree) && missing(road)) 
+#            r.nona <- !is.na(r)
+#        if (missing(tree) && !missing(road)) 
+#            r.nona <- !is.na(r) & !is.na(road)
+#        if (!missing(tree) && missing(road)) 
+#            r.nona <- !is.na(r) & !is.na(tree)
+#        if (!missing(tree) && !missing(road)) 
+#            r.nona <- !is.na(r) & !is.na(tree) & !is.na(road)
     } else {
         model.edr <- NA
         sigma <- sigma0
-        r.nona <- !is.na(r)
-        if (length(sigma)==1)
+#        r.nona <- !is.na(r)
+        if (length(sigma) == 1) 
             sigma <- rep(sigma, length(r))
     }
-    sigma <- sigma[r.nona]
+#    r.nona <- rep(TRUE, length(sigma))
+#    sigma <- sigma[r.nona]
     names(sigma) <- NULL
-    ## output
-    tt <- t[t.nona]
-    rr <- r[r.nona]
-    unlim <- ifelse(rr==Inf, TRUE, FALSE)
+#    tt <- t[t.nona]
+#    rr <- r[r.nona]
+    tt <- t
+    rr <- r
+    unlim <- ifelse(rr == Inf, TRUE, FALSE)
     A <- q <- r
     p <- t
-    A[r.nona] <- ifelse(unlim, pi*sigma^2, pi*rr^2)
-    p[t.nona] <- pfun(tt, phi)
-    q[r.nona] <- ifelse(unlim, 1, qfun(rr, sigma))
+#    A[r.nona] <- ifelse(unlim, pi * sigma^2, pi * rr^2)
+#    p[t.nona] <- pfun(tt, phi)
+#    q[r.nona] <- ifelse(unlim, 1, qfun(rr, sigma))
+    A <- ifelse(unlim, pi * sigma^2, pi * rr^2)
+    p <- pfun(tt, phi)
+    q <- ifelse(unlim, 1, qfun(rr, sigma))
     out <- data.frame(A, p, q)
-    if (!missing(labels))
+    if (!missing(labels)) 
         rownames(out) <- labels
-    class(out) <- c("localBAMcorrections", "BAMcorrections", "data.frame")
+    class(out) <- c("localBAMcorrections", "BAMcorrections", 
+        "data.frame")
     attr(out, "species") <- species
     attr(out, "model.sra") <- as.integer(model.sra)
     attr(out, "model.edr") <- as.integer(model.edr)
