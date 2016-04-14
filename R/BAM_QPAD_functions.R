@@ -173,8 +173,10 @@ function(species, model.sra, model.edr) {
         w <- exp(-dAIC/2)
         w/sum(w)
     }
-    out$sra$weights <- wfun(out$sra$dAIC)
-    out$edr$weights <- wfun(out$edr$dAIC)
+    out$sra$wAIC <- wfun(out$sra$dAIC)
+    out$sra$wBIC <- wfun(out$sra$dBIC)
+    out$edr$wAIC <- wfun(out$edr$dAIC)
+    out$edr$wBIC <- wfun(out$edr$dBIC)
     out
 }
 #selectmodelBAMspecies("OVEN")
@@ -182,23 +184,29 @@ function(species, model.sra, model.edr) {
 ## model ID for best supported model
 ## multi: best model randomly chosen based on model weights
 bestmodelBAMspecies <- 
-function(species, model.sra, model.edr, type=c("AIC", "BIC", "multi")) {
+function(species, model.sra, model.edr, type=c("AIC", "BIC", "AICmulti", "BICmulti")) {
     checkBAMestimates()
     type <- match.arg(type)
     x <- selectmodelBAMspecies(species, model.sra, model.edr)
-    if (type=="multi") {
-        out <- list(sra=as.character(sample(x$sra$model, 1, 
-                prob=x$sra$weights)),
-            edr=as.character(sample(x$edr$model, 1, 
-                prob=x$edr$weights)))
-    } else {
-        if (type=="AIC") {
-            out <- list(sra=as.character(x$sra$model[which.min(x$sra$AIC)]),
-                edr=as.character(x$edr$model[which.min(x$edr$AIC)]))
-        } else {
+    if (type=="AIC") {
+        out <- list(sra=as.character(x$sra$model[which.min(x$sra$AIC)]),
+            edr=as.character(x$edr$model[which.min(x$edr$AIC)]))
+    }
+    if (type=="BIC") {
             out <- list(sra=as.character(x$sra$model[which.min(x$sra$BIC)]),
                 edr=as.character(x$edr$model[which.min(x$edr$BIC)]))
-        }
+    }
+    if (type=="AICmulti") {
+        out <- list(sra=as.character(sample(x$sra$model, 1, 
+                prob=x$sra$wAIC)),
+            edr=as.character(sample(x$edr$model, 1, 
+                prob=x$edr$wAIC)))
+    }
+    if (type=="BICmulti") {
+        out <- list(sra=as.character(sample(x$sra$model, 1, 
+                prob=x$sra$wBIC)),
+            edr=as.character(sample(x$edr$model, 1, 
+                prob=x$edr$wBIC)))
     }
     out
 }
