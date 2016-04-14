@@ -1,5 +1,5 @@
-toDump <-
-structure(list(version = "3", sra_estimates = structure(list(
+.BAMCOEFS <- new.env()
+list2env(structure(list(version = "3", sra_estimates = structure(list(
     ALFL = structure(list(`0` = structure(list(coefficients = structure(-1.0566845082162, .Names = "log.phi_(Intercept)"), 
         vcov = structure(0.000199689209158536, .Dim = c(1L, 1L
         )), nobs = 7155L, loglik = -7766.88331190692, p = 1L, 
@@ -28218,4 +28218,4 @@ Inf, 13622.1638439064, 13085.0386126611, 2763.72584869564, Inf,
 "edr_aiccrank", "sra_aicrank", "edr_aicrank", "sra_bic", "edr_bic", 
 "sra_aicc", "edr_aicc", "sra_aic", "edr_aic", "sra_loglik", "edr_loglik", 
 "sra_df", "edr_df", "sra_n", "edr_n", "sra_models", "edr_models", 
-"sra_list", "edr_list", "spp_table", "spp"))
+"sra_list", "edr_list", "spp_table", "spp")), envir=.BAMCOEFS)
