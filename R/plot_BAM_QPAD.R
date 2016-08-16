@@ -1,4 +1,5 @@
-plot_QPAD <- function(spp) {
+plot_BAM_QPAD <-
+function(spp) {
 
     if (!exists(".BAMCOEFS"))
         stop("Use 'load_BAM_QPAD()' to load estimates")
