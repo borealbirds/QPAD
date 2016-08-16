@@ -3,8 +3,8 @@ plot_QPAD <- function(spp) {
     if (!exists(".BAMCOEFS"))
         stop("Use 'load_BAM_QPAD()' to load estimates")
 
-    version <- .BAMCOEFS$version
-    if (!(spp %in% getBAMspecieslist()))
+    SPP <- getBAMspecieslist()
+    if (!(spp %in% SPP))
         stop("species info not available")
 
     jd <- seq(0.35, 0.55, 0.01) # TSSR
@@ -65,9 +65,9 @@ plot_QPAD <- function(spp) {
     cfi <- coefBAMspecies(spp, mi$sra, mi$edr)
     vci <- vcovBAMspecies(spp, mi$sra, mi$edr)
 
-    Xp <- if (version == 2 && mi$sra %in% c("9","10","11","12","13","14"))
+    Xp <- if (getBAMversion() > 2 && mi$sra %in% c("9","10","11","12","13","14"))
         Xp2 else Xp1
-    if (version == 2)
+    if (getBAMversion() < 3)
         colnames(Xp)[1] <- "INTERCEPT"
     Xp <- Xp[,names(cfi$sra),drop=FALSE]
     lphi1 <- drop(Xp %*% cfi$sra)
@@ -76,7 +76,7 @@ plot_QPAD <- function(spp) {
     pmat <- sra_fun(3, pmat)
     pmax <- 1
 
-    if (version == 2)
+    if (getBAMversion() < 3)
         colnames(Xq0)[1] <- "INTERCEPT"
     Xq <- Xq0[,names(cfi$edr),drop=FALSE]
     ltau1 <- drop(Xq %*% cfi$edr)
@@ -118,19 +118,19 @@ plot_QPAD <- function(spp) {
         ylab="Hours since sunrise",
         main=paste("Best model:", mi$sra))
     box()
-    if (version == 2)
+    if (getBAMversion() < 3)
         image(1:nlevels(xq$LCC), tr*100, qmat,
           col = rev(grey(seq(0, qmax, len=12))), axes=FALSE,
           xlab="Land cover types", ylab="Percent tree cover",
           main=paste("Best model:", mi$edr))
-    if (version == 3)
+    if (getBAMversion() > 2)
         image(1:nlevels(xq$LCC4), tr*100, qmat,
               col = rev(grey(seq(0, qmax, len=12))), axes=FALSE,
               xlab="Land cover types", ylab="Percent tree cover",
               main=paste("Best model:", mi$edr))
-    if (version < 3)
+    if (getBAMversion() < 3)
         axis(1, 1:5, c("DConif","DDecid","SConif","SDecid","Open"))
-    if (version > 2)
+    if (getBAMversion() > 2)
         axis(1, 1:nlevels(xq$LCC4), levels(xq$LCC4))
     axis(2)
     box()
