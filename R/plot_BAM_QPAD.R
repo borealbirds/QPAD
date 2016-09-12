@@ -90,10 +90,10 @@ function(spp) {
 
     barplot(wp, space=0, col=grey(1-wp), border="grey", ylim=c(0,1),
         main=paste0(spp, " (n=", nsra, ") v", getBAMversion()),
-        ylab="Model weight", xlab="Model ID")
+        ylab="Model weight", xlab="Time-removal model ID")
     barplot(wq, space=0, col=grey(1-wq), border="grey", ylim=c(0,1),
         main=paste0(spp, " (n=", nedr, ") v", getBAMversion()),
-        ylab="Model weight", xlab="Model ID")
+        ylab="Model weight", xlab="Distance sampling model ID")
 
     plot(t, pp[,spp], type="n", ylim=c(0,1),
          xlab="Point count duration (min)",
