@@ -1,8 +1,8 @@
 Package: QPAD
 Type: Package
 Title: QPAD estimates
-Version: 0.0-1
-Date: 2015-05-14
+Version: 0.0-2
+Date: 2016-09-12
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Suggests: MASS
