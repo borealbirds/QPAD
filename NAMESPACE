@@ -18,7 +18,9 @@ export(bestmodelBAMspecies,
     summaryBAMspecies,
     unload_BAM_QPAD,
     vcovBAMspecies,
-    plot_BAM_QPAD)
+    plot_BAM_QPAD,
+    corrections2offset,
+    corrections)
 exportClasses(summaryBAMspecies,
     customBAMcorrections,
     globalBAMcorrections,
