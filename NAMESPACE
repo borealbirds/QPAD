@@ -27,3 +27,6 @@ exportClasses(summaryBAMspecies,
 exportMethods(print,
     corrections2offset,
     corrections)
+S3method(corrections2offset, BAMcorrections)
+S3method(corrections, BAMcorrections)
+S3method(print, summaryBAMspecies)
