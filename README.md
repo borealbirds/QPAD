@@ -27,10 +27,13 @@ inference and prediction of avian densities.
 ## Install
 
 Get the recent version as:
+
 ```{r}
 library(devtools)
 install_github("psolymos/QPAD")
 ```
+
+If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/) rep and **drat**.
 
 ## Use
 
