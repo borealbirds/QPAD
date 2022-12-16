@@ -1,14 +1,14 @@
 Package: QPAD
 Type: Package
 Title: QPAD estimates
-Version: 0.0-3
-Date: 2016-10-17
-Author: Peter Solymos
-Maintainer: Peter Solymos <solymos@ualberta.ca>
+Version: 0.0-4
+Date: 2023-01-01
+Author: Peter Solymos, Elly Knight
+Maintainer: Elly Knight <ecknight@ualberta.ca>
 Suggests: MASS
 Description: QPAD.
-URL: https://github.com/psolymos/QPAD
-BugReports: https://github.com/psolymos/QPAD/issues
+URL: https://github.com/borealbirds/QPAD
+BugReports: https://github.com/borealbirds/QPAD/issues
 License: GPL-2
 LazyLoad: yes
 LazyData: true
