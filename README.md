@@ -1,5 +1,7 @@
 # QPAD: Calibrating indices of avian density from non-standardized survey data
 
+> This package has been superseded by the [`qpad-offsets`](https://github.com/borealbirds/qpad-offsets) package (but estimates are still stored in this package).
+
 The analysis of large heterogeneous data sets of avian point-count surveys 
 compiled across studies is hindered
 by a lack of analytical approaches that can deal with detectability 
