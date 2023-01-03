@@ -19,7 +19,7 @@ load_BAM_QPAD <- function(version) {
         cat("Select version of BAM QPAD estimates\n")
         cat("2 - version 2 (2013-02-26)\n")
         cat("3 - version 3 (2015-05-14)\n")
-        cat("4 - version 4 (2023-01-01)\n")
+        cat("4 - version 4 (2023-01-06)\n")
         cat("Enter selection: ")
         version <- readline()
     } else {
