@@ -63,7 +63,7 @@ prediction of avian densities.
 
 }
 \author{
-Peter Solymos
+Peter Solymos, Elly Knight
 }
 \examples{
 \dontrun{
