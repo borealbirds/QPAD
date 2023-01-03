@@ -35,7 +35,7 @@ load_BAM_QPAD <- function(version) {
     source(fn)
   }
   if(version %in% c("4")){
-    readRDS(system.file(paste0("estimates/QPAD_v", version, ".rds"), 
+    .BAMCOEFS <- readRDS(system.file(paste0("estimates/QPAD_v", version, ".rds"), 
                         package="QPAD"))
   }
 
