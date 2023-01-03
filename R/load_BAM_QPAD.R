@@ -29,9 +29,16 @@ load_BAM_QPAD <- function(version) {
         cat("Value out of range. Enter selection: ")
         version <- readline()
     }
+  if(version %in% c("2", "3")){
     fn <- system.file(paste0("estimates/QPAD_v", version, ".R"), 
-        package="QPAD")
+                      package="QPAD")
     source(fn)
+  }
+  if(version %in% c("4")){
+    readRDS(system.file(paste0("estimates/QPAD_v", version, ".rds"), 
+                        package="QPAD"))
+  }
+
     cat("BAM QPAD parameter estimates loaded, version", version, "\n")
     invisible(NULL)
 }
