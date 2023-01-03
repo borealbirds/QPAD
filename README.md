@@ -1,5 +1,7 @@
 # QPAD: Calibrating indices of avian density from non-standardized survey data
 
+> This package has been superseded by the [`qpad-offsets`](https://github.com/borealbirds/qpad-offsets) package (but estimates are still stored in this package).
+
 The analysis of large heterogeneous data sets of avian point-count surveys 
 compiled across studies is hindered
 by a lack of analytical approaches that can deal with detectability 
@@ -30,18 +32,12 @@ Get the recent version as:
 
 ```{r}
 library(devtools)
-install_github("psolymos/QPAD")
+install_github("borealbirds/QPAD")
 ```
-
-If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/) repo and **drat**.
-
-## Use
-
-!!! FIXME !!!
 
 ## Report a problem
 
-Use the [issue tracker](https://github.com/psolymos/QPAD/issues)
+Use the [issue tracker](https://github.com/borealbirds/QPAD/issues)
 to report a problem.
 
 ## Cite
