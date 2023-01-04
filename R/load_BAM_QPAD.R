@@ -29,19 +29,9 @@ load_BAM_QPAD <- function(version) {
         cat("Value out of range. Enter selection: ")
         version <- readline()
     }
-  if(version %in% c("2", "3", "4")){
-    fn <- system.file(paste0("estimates/QPAD_v", version, ".R"), 
-                      package="QPAD")
-    source(fn)
-    cat("BAM QPAD parameter estimates loaded, version", version, "\n")
-  }
-#   if(version=="4"){
-#     fn <- system.file(paste0("estimates/QPAD_v", version, ".Rdata"), 
-#                       package="QPAD")
-#     .BAMCOEFS <- new.env()
-#     out <- try(load(fn, env=.BAMCOEFS))
-#     invisible(out)
-#    if(class(.BAMCOEFS)=="list"){cat("BAM QPAD parameter estimates loaded, version", version, "\n")}
-#   }
-    invisible(NULL)
+  fn <- system.file(paste0("estimates/QPAD_v", version, ".R"), 
+                    package="QPAD")
+  source(fn)
+  cat("BAM QPAD parameter estimates loaded, version", version, "\n")
+  invisible(NULL)
 }
