@@ -3,3 +3,4 @@ ln <- system.file(paste0("estimates/QPAD_v", version, ".rds"),
 bamcoefs <- readRDS(ln)
 .BAMCOEFS <- list2env(bamcoefs)
 rm(bamcoefs)
+rm(ln)
