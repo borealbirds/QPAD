@@ -38,8 +38,8 @@ load_BAM_QPAD <- function(version) {
   if(version=="4"){
     fn <- system.file(paste0("estimates/QPAD_v", version, ".Rdata"), 
                       package="QPAD")
-    .BAMCOEFS <- new.env()
-    out <- try(load(fn, envir=.BAMCOEFS))
+    out <- try(load(fn))
+    .BAMCOEFS <- list2env(bamcoefs)
 #    if(class(.BAMCOEFS)=="list"){cat("BAM QPAD parameter estimates loaded, version", version, "\n")}
 #    .BAMCOEFS
   }
