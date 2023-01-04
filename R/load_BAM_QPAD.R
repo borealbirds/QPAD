@@ -35,8 +35,9 @@ load_BAM_QPAD <- function(version) {
     source(fn)
   }
   if(version=="4"){
-    load(system.file(paste0("estimates/QPAD_v", version, ".RData"), 
-                        package="QPAD"))
+    fn <- system.file(paste0("estimates/QPAD_v", version, ".Rdata"), 
+                      package="QPAD")
+    out <- try(load(fn))
   }
 
     cat("BAM QPAD parameter estimates loaded, version", version, "\n")
