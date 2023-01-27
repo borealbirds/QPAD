@@ -184,11 +184,11 @@ function(species, model.sra, model.edr) {
 ## model ID for best supported model
 ## multi: best model randomly chosen based on model weights
 bestmodelBAMspecies <- 
-function(species, model.sra, model.edr, type=c("AIC", "BIC", "AICmulti", "BICmulti"), tag=c(0,1)) {
+function(species, model.sra, model.edr, type=c("AIC", "BIC", "AICmulti", "BICmulti"), TM=c(0,1)) {
     checkBAMestimates()
     type <- match.arg(type)
     x <- selectmodelBAMspecies(species, model.sra, model.edr)
-    if(tag==1){
+    if(TM==1){
       if (type=="AIC") {
         out <- list(sra=as.character(x$sra$model[which.min(x$sra$AIC)]),
                     edr=as.character(x$edr$model[which.min(x$edr$AIC)]))
@@ -211,7 +211,7 @@ function(species, model.sra, model.edr, type=c("AIC", "BIC", "AICmulti", "BICmul
       }
     }
     
-    if(tag==0){
+    if(TM==0){
       if (type=="AIC") {
         out <- list(sra=as.character(x$sra$model[which.min(x$sra$AIC[1:15])]),
                     edr=as.character(x$edr$model[which.min(x$edr$AIC)]))
