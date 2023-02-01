@@ -69,8 +69,14 @@ function(spp, type=c("AIC", "BIC")){
          unlist(coefBAMspecies(spp, 0, 0)))))
 
     ## model weights
-    wp <- selectmodelBAMspecies(spp)$sra$wBIC
-    wq <- selectmodelBAMspecies(spp)$edr$wBIC
+     if(type=="AIC"){
+       wp <- selectmodelBAMspecies(spp)$sra$wAIC
+       wq <- selectmodelBAMspecies(spp)$edr$wAIC
+     }
+    if(type=="BIC"){
+      wp <- selectmodelBAMspecies(spp)$sra$wBIC
+      wq <- selectmodelBAMspecies(spp)$edr$wBIC
+    }
     names(wp) <- rownames(selectmodelBAMspecies(spp)$sra)
     names(wq) <- rownames(selectmodelBAMspecies(spp)$edr)
     nsra <- selectmodelBAMspecies(spp)$sra$nobs[1]
