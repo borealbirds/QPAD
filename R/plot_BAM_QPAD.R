@@ -58,6 +58,9 @@ function(spp, type=c("AIC", "BIC")){
         p <- data.frame(PC=sra_fun(t, exp(cf$sra[1])),
                         SPT = sra_fun(t, exp(sum(cf$sra[c(1,2)]))),
                         SPM = sra_fun(t, exp(sum(cf$sra[c(1,3)]))))
+      } else {
+        cf <- coefBAMspecies(spp, 0, 0)
+        p <- data.frame(All = sra_fun(t, exp(cf$sra[1])))
       }
     }
     if(getBAMversion() < 4){
