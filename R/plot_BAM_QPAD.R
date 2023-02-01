@@ -1,5 +1,7 @@
 plot_BAM_QPAD <-
-function(spp) {
+function(spp, type="AIC"){
+  
+  type <- match.arg(type)
 
     if (!exists(".BAMCOEFS"))
         stop("Use 'load_BAM_QPAD()' to load estimates")
@@ -51,7 +53,7 @@ function(spp) {
     r <- seq(0, 4, 0.05)
     
     if(getBAMversion()>3){
-      if(as.numeric(bestmodelBAMspecies(spp, type="BIC", TM=1)$sra > 14)){
+      if(as.numeric(bestmodelBAMspecies(spp, type=type, TM=1)$sra > 14)){
         cf <- coefBAMspecies(spp, 15, 0)
         p <- data.frame(PC=sra_fun(t, exp(cf$sra[1])),
                         SPT = sra_fun(t, exp(sum(cf$sra[c(1,2)]))),
@@ -76,13 +78,13 @@ function(spp) {
 
     ## covariate effects
     if(getBAMversion() > 3){
-      mi <- bestmodelBAMspecies(spp, type="BIC", TM=1)
+      mi <- bestmodelBAMspecies(spp, type=type, TM=1)
     }
     if(getBAMversion() < 4){
-      mi <- bestmodelBAMspecies(spp, type="BIC", TM=0)
+      mi <- bestmodelBAMspecies(spp, type=type, TM=0)
     }
     if(as.numeric(mi$sra) > 14){
-      mi$sra <- as.numeric(mi$sra)-14
+      mi$sra <- as.numeric(mi$sra)-15
     }
     
     cfi <- coefBAMspecies(spp, mi$sra, mi$edr)
