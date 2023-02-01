@@ -8,9 +8,10 @@ function(spp) {
     if (!(spp %in% SPP))
         stop("species info not available")
 
-    jd <- seq(0.35, 0.55, 0.01) # TSSR
-    ts <- seq(-0.25, 0.5, 0.01) # JDAY
+    jd <- seq(0.35, 0.55, 0.01) # JDAY
+    ts <- seq(-0.25, 0.5, 0.01) # TSSR
     ls <- seq(0, 0.25, len=length(jd)) # DSLS
+    tm <- c("PC", "1SPT", "1SPM") # TM
 
     xp1 <- expand.grid(JDAY=jd,
         TSSR=ts)
@@ -45,13 +46,24 @@ function(spp) {
         xq$LCC2 <- factor(xq$LCC2, c("Forest", "OpenWet"))
     }
     Xq0 <- model.matrix(~., xq)
-
-    cfall <- exp(t(sapply(SPP, function(spp)
-        unlist(coefBAMspecies(spp, 0, 0)))))
+    
     t <- seq(0, 10, 0.1)
     r <- seq(0, 4, 0.05)
-    pp <- sapply(SPP, function(spp) sra_fun(t, cfall[spp,1]))
-    qq <- sapply(SPP, function(spp) edr_fun(r, cfall[spp,2]))
+    if(as.numeric(bestmodelBAMspecies(spp, type="BIC", TM=1)$sra > 14)){
+      cf <- coefBAMspecies(spp, 15, 0)
+      p <- data.frame(PC=sra_fun(t, exp(cf$sra[1])),
+                      SPT = sra_fun(t, exp(sum(cf$sra[c(1,2)]))),
+                      SPM = sra_fun(t, exp(sum(cf$sra[c(1,3)]))))
+    }
+    else{
+      cf <- coefBAMspecies(spp, 0, 0)
+      p <- data.frame(All = sra_fun(t, exp(cf$sra[1])))
+    }
+    q <- edr_fun(r, exp(cf$edr))
+    # cfall <- exp(t(sapply(SPP, function(spp)
+    #     unlist(coefBAMspecies(spp, 0, 0)))))
+    # pp <- sapply(SPP, function(spp) sra_fun(t, cfall[spp,1]))
+    # qq <- sapply(SPP, function(spp) edr_fun(r, cfall[spp,2]))
 
     ## model weights
     wp <- selectmodelBAMspecies(spp)$sra$wBIC
@@ -62,17 +74,25 @@ function(spp) {
     nedr <- selectmodelBAMspecies(spp)$edr$nobs[1]
 
     ## covariate effects
-    mi <- bestmodelBAMspecies(spp, type="BIC")
+    if(getBAMversion() > 3){
+      mi <- bestmodelBAMspecies(spp, type="BIC", TM=1)
+    } else {
+      mi <- bestmodelBAMspecies(spp, type="BIC")
+    }
+    if(as.numeric(mi$sra) > 14){
+      mi$sra <- as.numeric(mi$sra)-14
+    }
+    
     cfi <- coefBAMspecies(spp, mi$sra, mi$edr)
     vci <- vcovBAMspecies(spp, mi$sra, mi$edr)
 
-    Xp <- if (getBAMversion() > 2 && mi$sra %in% c("9","10","11","12","13","14"))
-        Xp2 else Xp1
+    Xp <- if (getBAMversion() >= 3 & mi$sra %in% c("9","10","11","12","13","14")) Xp2 else Xp1
+    
     if (getBAMversion() < 3)
         colnames(Xp)[1] <- "INTERCEPT"
     Xp <- Xp[,names(cfi$sra),drop=FALSE]
     lphi1 <- drop(Xp %*% cfi$sra)
-    pmat <- matrix(exp(lphi1), length(jd), length(ts))
+    pmat <- matrix(exp(lphi1), length(jd), length(ts), length(tm))
     pmax <- sra_fun(10, max(exp(lphi1)))
     pmat <- sra_fun(3, pmat)
     pmax <- 1
@@ -98,14 +118,24 @@ function(spp) {
     plot(t, pp[,spp], type="n", ylim=c(0,1),
          xlab="Point count duration (min)",
          ylab="Probability of singing")
-    matlines(t, pp, col="grey", lwd=1, lty=1)
-    lines(t, pp[,spp], col=1, lwd=2)
+    #    matlines(t, pp, col="grey", lwd=1, lty=1)
+    #    lines(t, pp[,spp], col=1, lwd=2)
+    if(getBAMversion()==4){
+      lines(t, p$PC, col="black", lwd=2)
+      lines(t, p$SPT, col="grey30", lwd=2)
+      lines(t, p$SPM, col="grey70", lwd=2)
+      legend("bottomright", legend=c("Human point count", "ARU - 1 tag/task", "ARU - 1 tag/minute"), col=c("black", "grey30", "grey70"), lwd=2, cex=0.8)
+    }
+    else {
+      lines(t, p$All, col=1, lwd=2)
+    }
 
     plot(r*100, qq[,spp], type="n", ylim=c(0,1),
          xlab="Point count radius (m)",
          ylab="Probability of detection")
-    matlines(r*100, qq, col="grey", lwd=1, lty=1)
-    lines(r*100, qq[,spp], col=1, lwd=2)
+#    matlines(r*100, qq, col="grey", lwd=1, lty=1)
+#    lines(r*100, qq[,spp], col=1, lwd=2)
+    lines(r*100, q, col=1, lwd=2)
     abline(v=cfall[spp,2]*100, lty=2)
     rug(cfall[,2]*100, side=1, col="grey")
     box()
@@ -115,7 +145,7 @@ function(spp) {
     image(xval, ts*24, pmat,
         col = rev(grey(seq(0, pmax, len=12))),
         xlab=ifelse(mi$sra %in% c("9","10","11","12","13","14"),
-            "Days since local springs", "Julian days"),
+            "Days since local spring", "Julian days"),
         ylab="Hours since sunrise",
         main=paste("Best model:", mi$sra))
     box()
