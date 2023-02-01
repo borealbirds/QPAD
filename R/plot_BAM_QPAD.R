@@ -1,5 +1,5 @@
 plot_BAM_QPAD <-
-function(spp, type="AIC"){
+function(spp, type=c("AIC", "BIC")){
   
   type <- match.arg(type)
 
