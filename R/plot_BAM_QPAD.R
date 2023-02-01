@@ -65,8 +65,6 @@ function(spp) {
     q <- edr_fun(r, exp(cf$edr))
      cfall <- exp(t(sapply(SPP, function(spp)
          unlist(coefBAMspecies(spp, 0, 0)))))
-    # pp <- sapply(SPP, function(spp) sra_fun(t, cfall[spp,1]))
-    # qq <- sapply(SPP, function(spp) edr_fun(r, cfall[spp,2]))
 
     ## model weights
     wp <- selectmodelBAMspecies(spp)$sra$wBIC
@@ -119,28 +117,22 @@ function(spp) {
         main=paste0(spp, " (n=", nedr, ") v", getBAMversion()),
         ylab="Model weight", xlab="Distance sampling model ID")
 
-#    plot(t, pp[,spp], type="n", ylim=c(0,1),
-    plot(t, p[,3], type="n", ylim=c(0,1),
+    plot(t, p[,1], type="n", ylim=c(0,1),
          xlab="Point count duration (min)",
          ylab="Probability of singing")
-    #    matlines(t, pp, col="grey", lwd=1, lty=1)
-    #    lines(t, pp[,spp], col=1, lwd=2)
-    if(getBAMversion()==4){
+    if(getBAMversion() < 4){
+      lines(t, p$All, col="black", lwd=2)
+    }
+    if(getBAMversion() > 3){
       lines(t, p$PC, col="black", lwd=2)
       lines(t, p$SPT, col="grey30", lwd=2)
       lines(t, p$SPM, col="grey70", lwd=2)
       legend("bottomright", legend=c("Human point count", "ARU - 1 tag/task", "ARU - 1 tag/minute"), col=c("black", "grey30", "grey70"), lwd=2, cex=0.8)
     }
-    else {
-      lines(t, p$All, col=1, lwd=2)
-    }
 
-#    plot(r*100, qq[,spp], type="n", ylim=c(0,1),
     plot(r*100, q, type="n", ylim=c(0,1),
          xlab="Point count radius (m)",
          ylab="Probability of detection")
-#    matlines(r*100, qq, col="grey", lwd=1, lty=1)
-#    lines(r*100, qq[,spp], col=1, lwd=2)
     lines(r*100, q, col=1, lwd=2)
     abline(v=cfall[spp,2]*100, lty=2)
     rug(cfall[,2]*100, side=1, col="grey")
