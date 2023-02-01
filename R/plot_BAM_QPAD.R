@@ -58,7 +58,7 @@ function(spp) {
                         SPM = sra_fun(t, exp(sum(cf$sra[c(1,3)]))))
       }
     }
-    else{
+    if(getBAMversion() < 4){
       cf <- coefBAMspecies(spp, 0, 0)
       p <- data.frame(All = sra_fun(t, exp(cf$sra[1])))
     }
@@ -79,8 +79,9 @@ function(spp) {
     ## covariate effects
     if(getBAMversion() > 3){
       mi <- bestmodelBAMspecies(spp, type="BIC", TM=1)
-    } else {
-      mi <- bestmodelBAMspecies(spp, type="BIC")
+    }
+    if(getBAMversion() < 4){
+      mi <- bestmodelBAMspecies(spp, type="BIC", TM=0)
     }
     if(as.numeric(mi$sra) > 14){
       mi$sra <- as.numeric(mi$sra)-14
