@@ -53,7 +53,7 @@ function(spp, type=c("AIC", "BIC")){
     r <- seq(0, 4, 0.05)
     
     if(getBAMversion()>3){
-      if(as.numeric(bestmodelBAMspecies(spp, type=type, TM=1)$sra > 14)){
+      if(as.numeric(bestmodelBAMspecies(spp, type=type, TM=1)$sra) > 14){
         cf <- coefBAMspecies(spp, 15, 0)
         p <- data.frame(PC=sra_fun(t, exp(cf$sra[1])),
                         SPT = sra_fun(t, exp(sum(cf$sra[c(1,2)]))),
