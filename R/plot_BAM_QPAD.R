@@ -49,19 +49,22 @@ function(spp) {
     
     t <- seq(0, 10, 0.1)
     r <- seq(0, 4, 0.05)
-    if(as.numeric(bestmodelBAMspecies(spp, type="BIC", TM=1)$sra > 14)){
-      cf <- coefBAMspecies(spp, 15, 0)
-      p <- data.frame(PC=sra_fun(t, exp(cf$sra[1])),
-                      SPT = sra_fun(t, exp(sum(cf$sra[c(1,2)]))),
-                      SPM = sra_fun(t, exp(sum(cf$sra[c(1,3)]))))
+    
+    if(getBAMversion()>3){
+      if(as.numeric(bestmodelBAMspecies(spp, type="BIC", TM=1)$sra > 14)){
+        cf <- coefBAMspecies(spp, 15, 0)
+        p <- data.frame(PC=sra_fun(t, exp(cf$sra[1])),
+                        SPT = sra_fun(t, exp(sum(cf$sra[c(1,2)]))),
+                        SPM = sra_fun(t, exp(sum(cf$sra[c(1,3)]))))
+      }
     }
     else{
       cf <- coefBAMspecies(spp, 0, 0)
       p <- data.frame(All = sra_fun(t, exp(cf$sra[1])))
     }
     q <- edr_fun(r, exp(cf$edr))
-    # cfall <- exp(t(sapply(SPP, function(spp)
-    #     unlist(coefBAMspecies(spp, 0, 0)))))
+     cfall <- exp(t(sapply(SPP, function(spp)
+         unlist(coefBAMspecies(spp, 0, 0)))))
     # pp <- sapply(SPP, function(spp) sra_fun(t, cfall[spp,1]))
     # qq <- sapply(SPP, function(spp) edr_fun(r, cfall[spp,2]))
 
@@ -92,7 +95,7 @@ function(spp) {
         colnames(Xp)[1] <- "INTERCEPT"
     Xp <- Xp[,names(cfi$sra),drop=FALSE]
     lphi1 <- drop(Xp %*% cfi$sra)
-    pmat <- matrix(exp(lphi1), length(jd), length(ts), length(tm))
+    pmat <- matrix(exp(lphi1), length(jd), length(ts))
     pmax <- sra_fun(10, max(exp(lphi1)))
     pmat <- sra_fun(3, pmat)
     pmax <- 1
@@ -115,7 +118,8 @@ function(spp) {
         main=paste0(spp, " (n=", nedr, ") v", getBAMversion()),
         ylab="Model weight", xlab="Distance sampling model ID")
 
-    plot(t, pp[,spp], type="n", ylim=c(0,1),
+#    plot(t, pp[,spp], type="n", ylim=c(0,1),
+    plot(t, p[,3], type="n", ylim=c(0,1),
          xlab="Point count duration (min)",
          ylab="Probability of singing")
     #    matlines(t, pp, col="grey", lwd=1, lty=1)
@@ -130,7 +134,8 @@ function(spp) {
       lines(t, p$All, col=1, lwd=2)
     }
 
-    plot(r*100, qq[,spp], type="n", ylim=c(0,1),
+#    plot(r*100, qq[,spp], type="n", ylim=c(0,1),
+    plot(r*100, q, type="n", ylim=c(0,1),
          xlab="Point count radius (m)",
          ylab="Probability of detection")
 #    matlines(r*100, qq, col="grey", lwd=1, lty=1)
@@ -169,3 +174,4 @@ function(spp) {
     par(op)
     invisible(NULL)
 }
+
