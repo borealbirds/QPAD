@@ -30,7 +30,7 @@ Get the recent version as:
 
 ```{r}
 library(devtools)
-install_github("psolymos/QPAD")
+install_github("borealbirds/QPAD")
 ```
 
 If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/) repo and **drat**.
@@ -41,7 +41,7 @@ If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/
 
 ## Report a problem
 
-Use the [issue tracker](https://github.com/psolymos/QPAD/issues)
+Use the [issue tracker](https://github.com/borealbirds/QPAD/issues)
 to report a problem.
 
 ## Cite
