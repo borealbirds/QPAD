@@ -37,7 +37,7 @@ If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/
 
 ## Use
 
-!!! FIXME !!!
+Functions to calculate QPAD offsets are available in the [`wildrtrax`](https://github.com/ABbiodiversity/wildRtrax) R package or the [`qpad offsets`] repository(https://github.com/borealbirds/qpad-offsets).
 
 ## Report a problem
 
