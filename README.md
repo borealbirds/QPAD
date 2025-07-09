@@ -32,8 +32,6 @@ Get the recent version as:
 remotes::install_github("borealbirds/QPAD")
 ```
 
-If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/) repo and **drat**.
-
 ## Use
 
 Functions to calculate QPAD offsets are available in the [`wildrtrax`](https://github.com/ABbiodiversity/wildRtrax) R package or the [`qpad offsets`](https://github.com/borealbirds/qpad-offsets) repository.
