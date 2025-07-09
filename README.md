@@ -29,8 +29,7 @@ inference and prediction of avian densities.
 Get the recent version as:
 
 ```{r}
-library(devtools)
-install_github("borealbirds/QPAD")
+remotes::install_github("borealbirds/QPAD")
 ```
 
 If you have trouble with **devtools**, try [this](http://peter.solymos.org/drat/) repo and **drat**.
